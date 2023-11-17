@@ -98,7 +98,7 @@
 
                             </figure>
                             <div class="media-body" style="position: relative;">
-                                <h3 class="mt-0"><a href="#"><%= arr.get(idx).getType()%></a></h3>
+                                <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx).getType()%>><%= arr.get(idx).getType()%> Room</a></h3>
                                 <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
                                     <span>
                                         Rate
@@ -133,7 +133,7 @@
 
                             </figure>
                             <div class="media-body" style="position: relative;">
-                                <h3 class="mt-0"><a href="#"><%= arr.get(idx + 1).getType()%></a></h3>
+                                <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx + 1).getType()%>><%= arr.get(idx + 1).getType()%> Room</a></h3>
                                 <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
                                     <span>
                                         Rate
@@ -167,7 +167,7 @@
 
                             </figure>
                             <div class="media-body" style="position: relative;">
-                                <h3 class="mt-0"><a href="#"><%= arr.get(idx + 2).getType()%></a></h3>
+                                <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx + 2).getType()%>><%= arr.get(idx + 2).getType()%> Room</a></h3>
                                 <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
                                     <span>
                                         Rate

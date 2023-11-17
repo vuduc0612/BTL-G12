@@ -14,35 +14,58 @@ import model.Room;
  *
  * @author huuduc
  */
-public class RoomDAO extends DAO{
+public class RoomDAO extends DAO {
 
     public RoomDAO() {
         super();
     }
-    
-    public ArrayList<Room> getAllRoom(){
-        String sql = "select rooms.*, roomimages.imgURL\n" +
-                    "from rooms\n" +
-                    "inner join roomImages on rooms.roomId = roomImages.roomId;";
-        try{
+
+    public ArrayList<Room> getAllRoom() {
+        String sql = "select rooms.*, roomimages.imgURL\n"
+                + "from rooms\n"
+                + "inner join roomImages on rooms.roomId = roomImages.roomId;";
+        try {
             ArrayList<Room> arr = new ArrayList();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 ArrayList<String> img = new ArrayList();
                 img.add(rs.getString("imgURL"));
-                arr.add(new Room(rs.getInt("roomId"), rs.getString("roomName"), 
-                rs.getString("roomType"), rs.getFloat("price"), 
-                rs.getFloat("sale"), img, rs.getInt("guest"), 
-                rs.getInt("rate"), rs.getInt("square"), 
+                arr.add(new Room(rs.getInt("roomId"), rs.getString("roomName"),
+                        rs.getString("roomType"), rs.getFloat("price"),
+                        rs.getFloat("sale"), img, rs.getInt("guest"),
+                        rs.getInt("rate"), rs.getInt("square"),
                         rs.getString("description")));
             }
             return arr;
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return null;
     }
 
+    public Room getRoom(String type) {
+        String sql = String.format("select rooms.*, roomimages.imgURL\n"
+                    + "from rooms\n"
+                    + "inner join roomImages on rooms.roomId = roomImages.roomId\n"
+                    + "where roomType = \"%s\";", type);
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ArrayList<String> img = new ArrayList();
+                img.add(rs.getString("imgURL"));
+
+                return new Room(rs.getInt("roomId"), rs.getString("roomName"),
+                        rs.getString("roomType"), rs.getFloat("price"),
+                        rs.getFloat("sale"), img, rs.getInt("guest"),
+                        rs.getInt("rate"), rs.getInt("square"),
+                        rs.getString("description"));
+
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

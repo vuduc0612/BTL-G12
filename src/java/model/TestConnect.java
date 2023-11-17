@@ -24,6 +24,10 @@ public class TestConnect {
                 System.out.println(x);
             }
         }
-        
+        String name = "Standard";
+        String sql = String.format("select rooms.*, roomimages.imgURL\n"
+                    + "inner join roomImages on rooms.roomId = roomImages.roomId\n"
+                    + "where roomType = \"%s\";", name);
+        System.out.println(sql);
     }
 }

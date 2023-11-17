@@ -4,8 +4,16 @@
         <servlet-name>RoomListServLet</servlet-name>
         <servlet-class>controller.RoomListServLet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RoomDetailServlet</servlet-name>
+        <servlet-class>controller.RoomDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RoomListServLet</servlet-name>
         <url-pattern>/roomlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RoomDetailServlet</servlet-name>
+        <url-pattern>/detail</url-pattern>
     </servlet-mapping>
 </web-app>
