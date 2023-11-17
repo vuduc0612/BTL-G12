@@ -22,6 +22,7 @@
         <!-- Theme Style -->
         <link rel="stylesheet" href="css/style.css">
     </head>
+
     <body>
         <header role="banner">
 
@@ -74,45 +75,119 @@
         </section>
 
         <!--Present-->
+        
+        
         <% ArrayList<Room> arr = (ArrayList<Room>)request.getAttribute("data");%>
-
+        
         <section class="site-section">
             <div class="container">
                 <div class="row">
+                    <%for(int idx = 0; idx < arr.size(); idx += 3){%>
+                    <!-- 1 -->
                     <div class="col-md-4 mb-4">
                         <div class="media d-block room mb-0">
                             <figure>
-                                <%String urlImg = arr.get(0).getImg();%>
+                                <%String urlImg = arr.get(idx).getImg();%>
                                 <div>
                                     <img style="position: relative" src="<%= urlImg%>" alt="Generic placeholder image" class="img-fluid">
-                                    <span style="padding:12px 20px 16px; position: absolute; left: -18px; bottom: 45px; z-index: 20; white-space: nowrap; line-height: 1">
-                                        <span style="font-size: 15px;color: #f0ca7f;"><%= arr.get(0).getPrice()%> <bdi><span style="font-size: 24px;color: #f0ca7f;">₫ </span></bdi></span>
+                                    <span style="margin:30px 60px 5px 30px; padding:10px 15px 10px; background: #3c3c3c; position: absolute; left: -18px; bottom: 10px; z-index: 20; white-space: nowrap; line-height: 1">
+                                        <span style="font-size: 15px;color: #f0ca7f;"><%= arr.get(idx).getPrice()%> <bdi><span style="font-size: 24px;color: #f0ca7f;">₫ </span></bdi></span>
                                         <span style="font-size: 15px; color: #fff">/ night</span>
                                     </span>
                                 </div>
-                                <div class="overlap-text">
+
+                            </figure>
+                            <div class="media-body" style="position: relative;">
+                                <h3 class="mt-0"><a href="#"><%= arr.get(idx).getType()%></a></h3>
+                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
                                     <span>
                                         Rate
-                                        <% int stars = arr.get(0).getRate();
+                                        <% int stars = arr.get(idx).getRate();
                                            for(int i = 0; i < stars; i++){%>
                                         <span class="ion-ios-star"></span>
                                         <%}%>
                                     </span>
-                                </div>   
-                            </figure>
-                            <div class="media-body">
-                                <h3 class="mt-0"><a href="#"><%= arr.get(0).getType()%></a></h3>
-
+                                </div> 
                                 <ul class="room-specs">
-                                    <li><span class="ion-ios-people-outline"></span> <%= arr.get(0).getGuest()%> Guests</li>
-                                    <li><span class="ion-ios-crop"></span> <%= arr.get(0).getSquare()%> ft <sup>2</sup></li>
+                                    <li><span class="ion-ios-people-outline"></span> <%= arr.get(idx).getGuest()%> Guests</li>
+                                    <li><span class="ion-ios-crop"></span> <%= arr.get(idx).getSquare()%> ft <sup>2</sup></li>
                                 </ul>
-                                <p><%= arr.get(0).getDes()%></p>
+                                <p><%= arr.get(idx).getDes()%></p>
                                 <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
                             </div>
                         </div>
 
                     </div>
+                    <!<!-- 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="media d-block room mb-0">
+                            <figure>
+                                <%String urlImg1 = arr.get(idx + 1).getImg();%>
+                                <div>
+                                    <img style="position: relative" src="<%= urlImg1%>" alt="Generic placeholder image" class="img-fluid">
+                                    <span style="margin:30px 60px 5px 30px; padding:10px 15px 10px; background: #3c3c3c; position: absolute; left: -18px; bottom: 10px; z-index: 20; white-space: nowrap; line-height: 1">
+                                        <span style="font-size: 15px;color: #f0ca7f;"><%= arr.get(idx + 1).getPrice()%> <bdi><span style="font-size: 24px;color: #f0ca7f;">₫ </span></bdi></span>
+                                        <span style="font-size: 15px; color: #fff">/ night</span>
+                                    </span>
+                                </div>
+
+                            </figure>
+                            <div class="media-body" style="position: relative;">
+                                <h3 class="mt-0"><a href="#"><%= arr.get(idx + 1).getType()%></a></h3>
+                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
+                                    <span>
+                                        Rate
+                                        <% int stars1 = arr.get(idx + 1).getRate();
+                                           for(int i = 0; i < stars1; i++){%>
+                                        <span class="ion-ios-star"></span>
+                                        <%}%>
+                                    </span>
+                                </div> 
+                                <ul class="room-specs">
+                                    <li><span class="ion-ios-people-outline"></span> <%= arr.get(idx + 1).getGuest()%> Guests</li>
+                                    <li><span class="ion-ios-crop"></span> <%= arr.get(idx + 1).getSquare()%> ft <sup>2</sup></li>
+                                </ul>
+                                <p><%= arr.get(idx + 1).getDes()%></p>
+                                <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!<!-- 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="media d-block room mb-0">
+                            <figure>
+                                <%String urlImg2 = arr.get(idx + 2).getImg();%>
+                                <div>
+                                    <img style="position: relative" src="<%= urlImg2%>" alt="Generic placeholder image" class="img-fluid">
+                                    <span style="margin:30px 60px 5px 30px; padding:10px 15px 10px; background: #3c3c3c; position: absolute; left: -18px; bottom: 10px; z-index: 20; white-space: nowrap; line-height: 1">
+                                        <span style="font-size: 15px;color: #f0ca7f;"><%= arr.get(idx + 2).getPrice()%> <bdi><span style="font-size: 24px;color: #f0ca7f;">₫ </span></bdi></span>
+                                        <span style="font-size: 15px; color: #fff">/ night</span>
+                                    </span>
+                                </div>
+
+                            </figure>
+                            <div class="media-body" style="position: relative;">
+                                <h3 class="mt-0"><a href="#"><%= arr.get(idx + 2).getType()%></a></h3>
+                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
+                                    <span>
+                                        Rate
+                                        <% int stars2 = arr.get(idx + 2).getRate();
+                                           for(int i = 0; i < stars2; i++){%>
+                                        <span class="ion-ios-star"></span>
+                                        <%}%>
+                                    </span>
+                                </div> 
+                                <ul class="room-specs">
+                                    <li><span class="ion-ios-people-outline"></span> <%= arr.get(idx + 2).getGuest()%> Guests</li>
+                                    <li><span class="ion-ios-crop"></span> <%= arr.get(idx + 2).getSquare()%> ft <sup>2</sup></li>
+                                </ul>
+                                <p><%= arr.get(idx + 2).getDes()%></p>
+                                <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
+                            </div>
+                        </div>
+
+                    </div>  
+                    <%}%>
                 </div>
             </div>
 
