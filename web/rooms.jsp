@@ -99,7 +99,7 @@
                             </figure>
                             <div class="media-body" style="position: relative;">
                                 <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx).getType()%>><%= arr.get(idx).getType()%> Room</a></h3>
-                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
+                                <div class="overlap-text", style="position: absolute; top:255px; left: 220px">
                                     <span>
                                         Rate
                                         <% int stars = arr.get(idx).getRate();
@@ -134,7 +134,7 @@
                             </figure>
                             <div class="media-body" style="position: relative;">
                                 <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx + 1).getType()%>><%= arr.get(idx + 1).getType()%> Room</a></h3>
-                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
+                                <div class="overlap-text", style="position: absolute; top:255px; left: 220px">
                                     <span>
                                         Rate
                                         <% int stars1 = arr.get(idx + 1).getRate();
@@ -168,7 +168,7 @@
                             </figure>
                             <div class="media-body" style="position: relative;">
                                 <h3 class="mt-0"><a href= <%= "/hotel/detail?type=" + arr.get(idx + 2).getType()%>><%= arr.get(idx + 2).getType()%> Room</a></h3>
-                                <div class="overlap-text", style="position: absolute; top:245px; left: 170px">
+                                <div class="overlap-text", style="position: absolute; top:255px; left: 220px">
                                     <span>
                                         Rate
                                         <% int stars2 = arr.get(idx + 2).getRate();
