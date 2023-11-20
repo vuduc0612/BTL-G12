@@ -1,0 +1,93 @@
+-- tạo bảng rooms
+create table rooms(
+    roomId int primary key auto_increment, -- mã phòng
+    roomName varchar(255), -- tên(số) phòng
+    roomType varchar(20), -- loại phòng
+    isAvailable boolean, -- phòng còn trống hay không
+    price float, -- gia phòng
+    sale float, -- giảm giá
+    rate int , -- số sao
+    square int,
+    guest int,
+    description varchar(255)
+);
+insert into rooms values
+(null, "101", "Standard", True, 300000, 10, 3, 30, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "201", "Superior", True, 500000, 5, 4, 35, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "301", "Deluxe", True, 700000, 5, 4, 40, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "401", "Suite", True, 600000, 7, 5, 40, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "501", "Junior", True, 400000, 15, 4, 45, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "601", "Executive", True, 1000000, 20, 3, 50, 4,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi.");
+
+-- tao bảng ảnh phòng
+
+create table roomImages(
+    roomImageId int primary key auto_increment,
+    roomId int,
+    imgURL varchar(255),
+    foreign key (roomId) references rooms(roomId)
+);
+insert into roomImages values
+(null, 1, "https://www.hotelmonterey.co.jp/upload_file/monhtyo/stay/sng_600_001.jpg"),
+(null, 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWV8OhKiD7XENooZvQ_aIkKzJ9fVoHoCLMvw&usqp=CAU"),
+(null, 3, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuLzz2y99-x_st9xXTZRj0YY64FIJoEYyhQ&usqp=CAU"),
+(null, 4, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNj7zoHcAuF_QXGV3lEl8Hp_9CWFbcM-0zlw&usqp=CAU"),
+(null, 5, "https://www.hotel-de-tourny.com/wp-content/uploads/2018/11/Hotel-tourny-bordeaux-centre-single.jpg"),
+(null, 6, "https://www.riversideparkhotel.com/wp-content/uploads/2021/01/riverside-park-hotel-family-superior-room.jpg");
+
+
+-- tạo bảng khách hàng
+-- drop table customers;
+-- delete from customers where customerId = 1;
+create table customers(
+	customerId int primary key auto_increment,
+    customerName varchar(255), -- tên khách hàng
+    email varchar(255), -- email khách hàng
+    tel varchar(255) -- sdt khách hàng
+);
+
+-- tạo bảng đặt phòng
+-- drop table booking;
+
+create table booking(
+    bookId int primary key auto_increment,
+    customerId int,
+    roomId int,
+    checkIndate date,
+    checkOutDate date,
+    foreign key (customerId) references customers(customerId),
+    foreign key (roomId) references rooms(roomId)
+);
+
+insert into booking values
+(null, 1, 3, '08-08-2023', '10-8-2023');
+
+
+
+-- Test cau lenh truy van
+select * 
+from room_types
+inner join rooms on room_types.roomType = rooms.roomType
+group by rooms.roomType;
+
+SELECT LAST_INSERT_ID();
+
+
+select * 
+from rooms
+inner join booking on rooms.roomId = booking.roomId
+where (booking.checkInDate > "2023-11-24"
+OR booking.checkOutDate > "2023-11-23")
+AND rooms.roomType = 'Deluxe';
+
+delete from customers where customerId = 6;
+
+SELECT *
+FROM booking
+WHERE roomId = 3
+AND (
+    (checkInDate >= '2023-08-08' AND checkInDate < '2023-08-11')
+    OR (checkOutDate > '2023-08-08' AND checkOutDate <= '2023-08-11')
+    OR (checkInDate <= '2023-08-08' AND checkOutDate >= '2023-08-11')
+);
+

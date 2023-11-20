@@ -18,7 +18,7 @@ public class DAO {
     public DAO(){
         String url = "jdbc:mysql://localhost:3306/hotel?autoReconnect=true&useSSL=false";
         String username = "root";
-        String password = "Huuduc1234";
+        String password = "H1012003ieu";
         if(con == null){
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");
