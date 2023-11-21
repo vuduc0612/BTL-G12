@@ -5,20 +5,19 @@
 
 package controller;
 
-import dao.RoomDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Room;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
  * @author huuduc
  */
-public class RoomDetailServlet extends HttpServlet {
+public class TestServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,11 +29,9 @@ public class RoomDetailServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String type = request.getParameter("type");
-        RoomDAO rmd = new RoomDAO();
-        Room room = rmd.getRoom(type);
-        request.setAttribute("room", room);
-        request.getRequestDispatcher("booknow.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        String data = (String) session.getAttribute("dataKey");
+        System.out.println(data);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

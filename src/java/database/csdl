@@ -1,63 +1,28 @@
 -- tạo bảng rooms
 create table rooms(
-	roomId int primary key auto_increment, -- mã phòng
+    roomId int primary key auto_increment, -- mã phòng
     roomName varchar(255), -- tên(số) phòng
     roomType varchar(20), -- loại phòng
     isAvailable boolean, -- phòng còn trống hay không
     price float, -- gia phòng
     sale float, -- giảm giá
-    rate int  -- số sao
-    
+    rate int , -- số sao
+    square int,
+    guest int,
+    description varchar(255)
 );
-alter table rooms
-add square int,
-add guest int,
-add description varchar(255);
-
 insert into rooms values
-(null, "101", "Single", True, 300000, 10, 3),
-(null, "102", "Couple", True, 500000, 5, 4),
-(null, "201", "Family", True, 700000, 5, 4),
-(null, "202", "Couple", True, 600000, 7, 5),
-(null, "301", "Single", True, 400000, 15, 4),
-(null, "302", "Family", True, 800000, 20, 3),
-(null, "303", "Single", True, 500000, 10, 4);
--- tạo bảng khách hàng
-create table customers(
-	customerId int primary key auto_increment,
-    customerName varchar(255), -- tên khách hàng
-    birthDay varchar(30), -- ngay sinh
-    email varchar(255), -- email khách hàng
-    tel varchar(255) -- sdt khách hàng
-);
-insert into customers values
-(null, 'Nguyen Van Tuan', '2003-07-09',  'tuan@gamil.com', '038425384'),
-(null, 'Tran Van Nam', '2003-12-14',  'nam@gmail.com', '0399734834'),
-(null, 'Vu Ngoc Anh', '2003-11-04', 'anh@gmail.com', '030893473'),
-(null, 'Nguyen Thi Mai', '2003-09-10',  'mai@gmail.com', '038400834'),
-(null, 'Truong Van Hung', '2003-04-27', 'hung@gmail.com', '038073432');
--- tạo bảng đặt phòng
-create table booking(
-	bookId int primary key auto_increment,
-    customerId int,
-    roomId int,
-    checkIndate date,
-    checkOutDate date,
-    totalAmout float,
-    foreign key (customerId) references customers(customerId),
-    foreign key (roomId) references rooms(roomId)
-);
+(null, "101", "Standard", True, 300000, 10, 3, 30, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "201", "Superior", True, 500000, 5, 4, 35, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "301", "Deluxe", True, 700000, 5, 4, 40, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "401", "Suite", True, 600000, 7, 5, 40, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "501", "Junior", True, 400000, 15, 4, 45, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
+(null, "601", "Executive", True, 1000000, 20, 3, 50, 4,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi.");
 
-insert into booking values
-(null, 1, 3, STR_TO_DATE('07-08-2023', '%m-%d-%Y'), STR_TO_DATE('08-08-2023', '%m-%d-%Y'), 700000),
-(null, 2, 1, STR_TO_DATE("11-08-2023", '%m-%d-%Y'), STR_TO_DATE( "10-08-2023", '%m-%d-%Y'), 500000),
-(null, 1, 4, STR_TO_DATE("10-09-2023", '%m-%d-%Y'), STR_TO_DATE( "11-09-2023", '%m-%d-%Y'), 800000),
-(null, 4, 4, STR_TO_DATE("07-08-2023", '%m-%d-%Y'), STR_TO_DATE( "08-08-2023", '%m-%d-%Y'), 500000),
-(null, 5, 7, STR_TO_DATE("08-12-2023", '%m-%d-%Y'), STR_TO_DATE( "09-12-2023", '%m-%d-%Y'), 600000);
+-- tao bảng ảnh phòng
 
--- tạo bảng ảnh của các phòng
 create table roomImages(
-	roomImageId int primary key auto_increment,
+    roomImageId int primary key auto_increment,
     roomId int,
     imgURL varchar(255),
     foreign key (roomId) references rooms(roomId)
@@ -68,11 +33,61 @@ insert into roomImages values
 (null, 3, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjuLzz2y99-x_st9xXTZRj0YY64FIJoEYyhQ&usqp=CAU"),
 (null, 4, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNj7zoHcAuF_QXGV3lEl8Hp_9CWFbcM-0zlw&usqp=CAU"),
 (null, 5, "https://www.hotel-de-tourny.com/wp-content/uploads/2018/11/Hotel-tourny-bordeaux-centre-single.jpg"),
-(null, 6, "https://www.riversideparkhotel.com/wp-content/uploads/2021/01/riverside-park-hotel-family-superior-room.jpg"),
-(null, 7, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUozdkc_w2zhVIE5BASF6rpZuzHyK71WvknA&usqp=CAU");
+(null, 6, "https://www.riversideparkhotel.com/wp-content/uploads/2021/01/riverside-park-hotel-family-superior-room.jpg");
 
-select rooms.*, roomimages.imgURL
+
+-- tạo bảng khách hàng
+-- drop table customers;
+-- delete from customers where customerId = 1;
+create table customers(
+	customerId int primary key auto_increment,
+    customerName varchar(255), -- tên khách hàng
+    email varchar(255), -- email khách hàng
+    tel varchar(255) -- sdt khách hàng
+);
+
+-- tạo bảng đặt phòng
+-- drop table booking;
+
+create table booking(
+    bookId int primary key auto_increment,
+    customerId int,
+    roomId int,
+    checkIndate date,
+    checkOutDate date,
+    foreign key (customerId) references customers(customerId),
+    foreign key (roomId) references rooms(roomId)
+);
+
+insert into booking values
+(null, 1, 3, '08-08-2023', '10-8-2023');
+
+
+
+-- Test cau lenh truy van
+select * 
+from room_types
+inner join rooms on room_types.roomType = rooms.roomType
+group by rooms.roomType;
+
+SELECT LAST_INSERT_ID();
+
+
+select * 
 from rooms
-inner join roomImages on rooms.roomId = roomImages.roomId;
-delete  from rooms where roomId = 7;
+inner join booking on rooms.roomId = booking.roomId
+where (booking.checkInDate > "2023-11-24"
+OR booking.checkOutDate > "2023-11-23")
+AND rooms.roomType = 'Deluxe';
+
+delete from customers where customerId = 6;
+
+SELECT *
+FROM booking
+WHERE roomId = 3
+AND (
+    (checkInDate >= '2023-08-08' AND checkInDate < '2023-08-11')
+    OR (checkOutDate > '2023-08-08' AND checkOutDate <= '2023-08-11')
+    OR (checkInDate <= '2023-08-08' AND checkOutDate >= '2023-08-11')
+);
 
