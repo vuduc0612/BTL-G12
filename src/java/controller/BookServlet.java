@@ -63,7 +63,7 @@ public class BookServlet extends HttpServlet {
                 System.out.println("Khong the dat phong");
             }
            
-            //System.out.println(checkIn + " " + checkOut);
+            System.out.println(checkIn + " " + checkOut);
             //System.out.println(name + " " + email + " " + tel);
         } else {
             System.out.println("Khong nhan duoc du lieu");

@@ -27,7 +27,7 @@ public class BookingDAO extends DAO {
                     + "    OR (checkOutDate > ? AND checkOutDate <= ?)\n"
                     + "    OR (checkInDate <= ? AND checkOutDate >= ?)\n"
                     + ");";
-           
+
             String arr[] = checkInDate.split("/");
             String newCheckIn = arr[2] + "-" + arr[0] + "-" + arr[1];
             String arr1[] = checkOutDate.split("/");
@@ -42,7 +42,7 @@ public class BookingDAO extends DAO {
             ps.setString(6, newCheckIn);
             ps.setString(7, newCheckOut);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return false;
             }
             return true;
@@ -55,17 +55,19 @@ public class BookingDAO extends DAO {
 
     public void insertBooking(int idRoom, int idCustomer, String checkInDate, String checkOutDate) {
         try {
-            String sql = "insert into booking values(null, ?, ?, ?, ?)";
+            String sql = "INSERT INTO booking (bookId, customerId, roomId, checkInDate, checkOutDate)\n"
+                    + "VALUES (null, ?, ?, ?, ?);";
             PreparedStatement ps = con.prepareStatement(sql);
             String arr[] = checkInDate.split("/");
             String newCheckIn = arr[2] + "-" + arr[0] + "-" + arr[1];
             String arr1[] = checkOutDate.split("/");
             String newCheckOut = arr1[2] + "-" + arr1[0] + "-" + arr1[1];
-            ps.setInt(1, idRoom);
-            ps.setInt(2, idCustomer);
+            ps.setInt(1, idCustomer);
+            ps.setInt(2, idRoom);
             ps.setString(3, newCheckIn);
             ps.setString(4, newCheckOut);
-            ps.executeUpdate();
+            int cnt = ps.executeUpdate();
+            System.out.println(cnt);
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -13,12 +13,13 @@ public class Booking {
     private Customer customer;
     
     private String checkInDate, checkOutDate;
-
-    public Booking(Room room, Customer customer, String checkInDate, String checkOutDate) {
+    private int totalDate;
+    public Booking(Room room, Customer customer, String checkInDate, String checkOutDate, int totalDate) {
         this.room = room;
         this.customer = customer;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
+        this.totalDate = totalDate;
     }
 
     public Room getRoom() {
