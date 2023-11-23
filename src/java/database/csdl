@@ -1,6 +1,6 @@
 -- tạo bảng rooms
 create table rooms(
-    roomId int primary key auto_increment, -- mã phòng
+	roomId int primary key auto_increment, -- mã phòng
     roomName varchar(255), -- tên(số) phòng
     roomType varchar(20), -- loại phòng
     isAvailable boolean, -- phòng còn trống hay không
@@ -22,11 +22,12 @@ insert into rooms values
 -- tao bảng ảnh phòng
 
 create table roomImages(
-    roomImageId int primary key auto_increment,
+	roomImageId int primary key auto_increment,
     roomId int,
     imgURL varchar(255),
     foreign key (roomId) references rooms(roomId)
 );
+
 insert into roomImages values
 (null, 1, "https://www.hotelmonterey.co.jp/upload_file/monhtyo/stay/sng_600_001.jpg"),
 (null, 2, "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWV8OhKiD7XENooZvQ_aIkKzJ9fVoHoCLMvw&usqp=CAU"),
@@ -45,26 +46,32 @@ create table customers(
     email varchar(255), -- email khách hàng
     tel varchar(255) -- sdt khách hàng
 );
-
+insert into customers values
+(null, "Nguyen Van A", "A@gmail.com", "28346324");
 -- tạo bảng đặt phòng
--- drop table booking;
+drop table booking;
 
 create table booking(
-    bookId int primary key auto_increment,
+	bookId int primary key auto_increment,
     customerId int,
     roomId int,
     checkIndate date,
     checkOutDate date,
+    totalDay INT GENERATED ALWAYS AS (DATEDIFF(checkOutDate, checkInDate)),
     foreign key (customerId) references customers(customerId),
     foreign key (roomId) references rooms(roomId)
 );
+-- tam thoi bo cai nay
+create table bill(
+	billId int primary key auto_increment,
+    bookId int,
+    totalPrice float,
+    paymentDate date,
+    method varchar(255),
+    foreign key (bookId) references booking(bookId)
+);
 
-insert into booking values
-(null, 1, 3, '08-08-2023', '10-8-2023');
-
-
-
--- Test cau lenh truy van
+-- Test truy van
 select * 
 from room_types
 inner join rooms on room_types.roomType = rooms.roomType

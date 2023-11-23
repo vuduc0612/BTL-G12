@@ -138,7 +138,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <input type="submit" value="Reserve Now With <%= room.getPrice()%>" class="btn btn-primary">
+                                    <input type="submit" value="Reserve Now" class="btn btn-primary">
                                 </div>
                             </div>
                         </form>
