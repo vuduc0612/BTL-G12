@@ -29,8 +29,7 @@ public class TestServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String data = (String) session.getAttribute("dataKey");
+        String data = request.getParameter("data");
         System.out.println(data);
     } 
 

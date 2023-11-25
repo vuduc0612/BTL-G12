@@ -29,8 +29,7 @@ public class TestConnect {
         String email = "@gmail.com";
         String sdt = "87345743";
         CustomerDAO cd = new CustomerDAO();
-        Customer cus = cd.insertCus(name, email, sdt);
-        System.out.println(cus);
+        
         
     }
 }

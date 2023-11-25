@@ -17,8 +17,8 @@
         <servlet-class>controller.TestServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ComfirmSerlet</servlet-name>
-        <servlet-class>controller.ComfirmSerlet</servlet-class>
+        <servlet-name>ConfirmSerlet</servlet-name>
+        <servlet-class>controller.ConfirmSerlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RoomListServLet</servlet-name>
@@ -37,7 +37,7 @@
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ComfirmSerlet</servlet-name>
-        <url-pattern>/comfirm</url-pattern>
+        <servlet-name>ConfirmSerlet</servlet-name>
+        <url-pattern>/confirm</url-pattern>
     </servlet-mapping>
 </web-app>

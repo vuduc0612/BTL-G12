@@ -16,16 +16,17 @@ import model.Customer;
 public class CustomerDAO extends DAO{
 
     public CustomerDAO() {
+        super();
     }
     
-    public Customer insertCus(String name, String email, String tel){
+    public int insertCus(Customer cus){
         try{
             String sql = "insert into customers values" +
                         "(null, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, name);
-            ps.setString(2, email);
-            ps.setString(3, tel);
+            ps.setString(1, cus.getName());
+            ps.setString(2, cus.getEmail());
+            ps.setString(3, cus.getSdt());
             int cnt = ps.executeUpdate();
             if(cnt > 0){
                 int idCus;
@@ -33,22 +34,15 @@ public class CustomerDAO extends DAO{
                 ResultSet rs = ps.executeQuery(sql);
                 if(rs.next()){
                     idCus = rs.getInt(1);
-                    sql = "select * from customers where customerId = ?";
-                    ps = con.prepareStatement(sql);
-                    ps.setInt(1, idCus);
-                    ResultSet rst = ps.executeQuery();
-                    if(rst.next())
-                        return new Customer(rst.getInt("customerId"), rst.getString("customerName"),
-                         rst.getString("email"),rst.getString("tel"));
-                }
-//                        
+                    return idCus;
+                }                       
             }
-            return null;
+            return -1;
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
-        return null;
+        return -1;
     }
     
 }

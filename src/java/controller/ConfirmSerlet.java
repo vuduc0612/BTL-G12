@@ -5,20 +5,26 @@
 
 package controller;
 
-import dao.RoomDAO;
+import dao.BillDAO;
+import dao.BookingDAO;
+import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Bill;
+import model.Booking;
+import model.Customer;
 import model.Room;
 
 /**
  *
  * @author huuduc
  */
-public class RoomDetailServlet extends HttpServlet {
+public class ConfirmSerlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,12 +36,44 @@ public class RoomDetailServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //Lay du lieu loai phong tu url
-        String type = request.getParameter("type");
-        //Lay phong tu db thong qua type
-        RoomDAO rmd = new RoomDAO();
-        Room room = rmd.getRoom(type);
-        //Chuyen huong sang book.jsp cung voi data la phong
+        HttpSession session = request.getSession();
+        Room room = (Room) session.getAttribute("room");
+        Customer customer = (Customer) session.getAttribute("customer");
+        String checkInDate = (String) session.getAttribute("checkInDate");
+        String checkOutDate = (String) session.getAttribute("checkOutDate");
+        int totalDate = (int) session.getAttribute("totalDate");
+        
+        BookingDAO bkd = new BookingDAO();
+        CustomerDAO cd = new CustomerDAO();
+        int idCus = cd.insertCus(customer);
+        customer.setId(idCus);
+        
+        int idRoom = room.getId();
+        int idBk = bkd.insertBooking(idRoom, idCus , checkInDate, checkOutDate, totalDate);
+        Booking booking = new Booking(idBk, room, customer, checkInDate, checkOutDate, totalDate);
+        booking.setId(idBk);
+        
+        Bill bill = new Bill(booking, totalDate*room.getGia());
+        BillDAO bd = new BillDAO();
+        bd.insertBill(bill);
+//        System.out.println(bill);
+//        System.out.println(room);
+//        System.out.println(customer);
+//        System.out.println(checkInDate + " " + checkOutDate);
+//        System.out.println(totalDate);
+//        System.out.println(idCus + " " + idRoom + " " + idBk);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>" + "Xac nhan thanh cong!!"+"</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
         
     } 
 

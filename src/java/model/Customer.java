@@ -12,8 +12,7 @@ public class Customer {
     private String name, sdt, email;
     private int id;
 
-    public Customer(int id, String name, String sdt, String email) {
-        this.id = id;
+    public Customer(String name, String email, String sdt) {
         this.name = name;
         this.sdt = sdt;
         this.email = email;
@@ -35,6 +34,9 @@ public class Customer {
         return id;
     }
     
+    public void setId(int id){
+        this.id = id;
+    }
     public String toString(){
         return this.id + " " + this.name + " " + this.email + " " + this.sdt;
     }

@@ -13,6 +13,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Booking;
 import model.Customer;
 import model.Room;
@@ -36,36 +42,61 @@ public class BookServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        /* TODO output your page here. You may use following sample code. */
+        //Lay du lieu tu form
         String checkIn = request.getParameter("arrival_date");
         String checkOut = request.getParameter("departure_date");
-
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
-//        System.out.println(name + " " + email + " " + tel);
-        
-        HttpSession session = request.getSession();
-        Room room = (Room) session.getAttribute("room");
-        System.out.println(room);
 
-        CustomerDAO cd = new CustomerDAO();
-        if (name != null && email != null && tel != null && name != "" && email != "" && tel != "") {
-            
+        if (name != null && email != null && tel != null && !name.equals("") && !email.equals("") && !tel.equals("")){
+            //Lay phong tu room.jsp thông qua session
+            HttpSession session = request.getSession();
+            Room room = (Room) session.getAttribute("room");
+            //tao bdk de check phong vua lay ve con trong trong hay khong
             BookingDAO bkd = new BookingDAO();
             if (bkd.check(checkIn, checkOut, room.getId())) {
+                //Co the dat phong
                 System.out.println("Co the dat phong");
-                Customer customer = cd.insertCus(name, email, tel);
-                //Booking bk = new Booking(room, customer, checkIn, checkOut);
-                bkd.insertBooking(room.getId(), customer.getId(), checkIn, checkOut);
+                Customer customer = new Customer(name, email, tel);
+                //Tinh ngay luu trus
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyy");
+                int totalDate = 0;
+                try {
+                    Date date1 = sdf.parse(checkIn);
+                    Date date2 = sdf.parse(checkOut);
+                    totalDate = (int) ((date2.getTime() - date1.getTime()) / 86400000);
+
+                } catch (ParseException ex) {
+                    Logger.getLogger(Booking.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
-            } else {
+                //Chuyen du lieu sang comfirm.jsp
+                System.out.println(totalDate);
+                request.setAttribute("room", room);
+                request.setAttribute("customer", customer);
+                request.setAttribute("checkInDate", checkIn);
+                request.setAttribute("checkOutDate", checkOut);
+                request.setAttribute("totalDate", totalDate);
+                request.getRequestDispatcher("bookconfirm.jsp").forward(request, response);   
+            } 
+            else{
                 System.out.println("Khong the dat phong");
+                //System.out.println(room.getId());
+                ArrayList<String> arr = bkd.getBookedDate(room.getId());
+                if(arr != null){
+                    for(String x : arr){
+                        System.out.println(x);
+                    }
+                }
+                else{
+                    System.out.println("Error");
+                }
+                request.setAttribute("data", arr);
+                request.getRequestDispatcher("test.jsp").forward(request, response); 
             }
-           
-            System.out.println(checkIn + " " + checkOut);
-            //System.out.println(name + " " + email + " " + tel);
-        } else {
+        } 
+        else{
             System.out.println("Khong nhan duoc du lieu");
         }
     }

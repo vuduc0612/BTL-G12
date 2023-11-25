@@ -65,7 +65,10 @@ public class Room {
         }
         return res;
     }
-
+    
+    public float getGia(){
+        return this.price;
+    }
     public void setPrice(float price) {
         this.price = price;
     }

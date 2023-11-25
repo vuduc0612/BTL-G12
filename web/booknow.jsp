@@ -246,7 +246,7 @@
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/magnific-popup-options.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
-
+        
         <script>
                 $('#arrival_date, #departure_date').datepicker({});
         </script>
