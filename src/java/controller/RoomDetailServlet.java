@@ -35,8 +35,10 @@ public class RoomDetailServlet extends HttpServlet {
         //Lay phong tu db thong qua type
         RoomDAO rmd = new RoomDAO();
         Room room = rmd.getRoom(type);
+
         //Chuyen huong sang book.jsp cung voi data la phong
-        
+        request.setAttribute("room", room);
+        request.getRequestDispatcher("booknow.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
