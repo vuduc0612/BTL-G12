@@ -20,6 +20,10 @@
         <servlet-name>ConfirmSerlet</servlet-name>
         <servlet-class>controller.ConfirmSerlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getDetailAjax</servlet-name>
+        <servlet-class>controller.getDetailAjax</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RoomListServLet</servlet-name>
         <url-pattern>/roomlist</url-pattern>
@@ -39,5 +43,9 @@
     <servlet-mapping>
         <servlet-name>ConfirmSerlet</servlet-name>
         <url-pattern>/confirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getDetailAjax</servlet-name>
+        <url-pattern>/getDetailAjax</url-pattern>
     </servlet-mapping>
 </web-app>

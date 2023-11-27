@@ -39,7 +39,7 @@
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="rooms.html">Rooms</a> 
+                                <a class="nav-link active" href="/hotel/roomlist">Room</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="blog.html">Blog</a>
@@ -52,7 +52,7 @@
                             </li>
 
                             <li class="nav-item cta">
-                                <a class="nav-link" href="booknow.html"><span>Book Now</span></a>
+                                <a class="nav-link" href="/hotel/roomlist"><span>Book Now</span></a>
                             </li>
                         </ul>
 
@@ -74,11 +74,50 @@
             </div>
         </section>
 
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="detailModal">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                    </div>
+                    <div class="modal-body">
+                        <img id="room-img" src="" class="rounded img-fluid" alt="Room image">
+                        <br><p id="room-description" style="text-align: justify;">Hotale Hotel boasts 10 Deluxe City View rooms that offer the relaxing and elegant feel of Neoclassical Style. Every room in the Hotale Hotel is a combination of beauty, aesthetics and art. Deluxe City View room is arranged with a reasonable area of 30 m2 and is fully equipped with modern amenities such as LCD cable TV, air conditioning, separate bedroom with hot and cold shower and toiletries. modern. The room has large windows opening to charming views of Hanoi. Deluxe is your smart choice for budget travelers because of its convenience and reasonable price. Connecting rooms are also available for groups and families</p>
+                        <ul>
+                            <li id="room-guest">attribute</li>
+                            <li id="room-square">attribute</li>
+                            <li id="room-price">attribute</li>
+                        </ul>
+                        <h5>Các tiện ích khác</h5>
+                        <ul>
+                            <li>Bãi đậu xe tiện ích</li>
+                            <li>Điện thoại hỗ trợ 24/7</li>
+                            <li>Bể bơi tự do</li>
+                            <li>Phòng tắm cao cấp</li>
+                            <li>Điều hòa 2 chiều</li>
+                            <li>Wifi miễn phí</li>
+                            <li>Miễn phí bữa sáng</li>
+                        </ul>
+                        <h5>Một số nội quy</h5>
+                        <ul>
+                            <li>Không hút thuốc trong phòng</li>
+                            <li>Không mang thú cưng vào phòng</li>
+                        </ul>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Đóng</button>
+                        <a id="book-btn" class="btn btn-primary btn-sm">Đặt phòng ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Present-->
-        
-        
+
+
         <% ArrayList<Room> arr = (ArrayList<Room>)request.getAttribute("data");%>
-        
+
         <section class="site-section">
             <div class="container">
                 <div class="row">
@@ -113,7 +152,7 @@
                                     <li><span class="ion-ios-crop"></span> <%= arr.get(idx).getSquare()%> ft <sup>2</sup></li>
                                 </ul>
                                 <p><%= arr.get(idx).getDes()%></p>
-                                <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
+                                <button type="button" class="btn btn-primary btn-sm" onclick=<%= "showDetailRoom('" + arr.get(idx).getType() + "')"%>>Xem thêm</button>
                             </div>
                         </div>
 
@@ -148,7 +187,7 @@
                                     <li><span class="ion-ios-crop"></span> <%= arr.get(idx + 1).getSquare()%> ft <sup>2</sup></li>
                                 </ul>
                                 <p><%= arr.get(idx + 1).getDes()%></p>
-                                <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
+                                <button type="button" class="btn btn-primary btn-sm" onclick=<%= "showDetailRoom('" + arr.get(idx+1).getType() + "')"%>>Xem thêm</button>
                             </div>
                         </div>
                     </div>
@@ -182,7 +221,7 @@
                                     <li><span class="ion-ios-crop"></span> <%= arr.get(idx + 2).getSquare()%> ft <sup>2</sup></li>
                                 </ul>
                                 <p><%= arr.get(idx + 2).getDes()%></p>
-                                <p><a href="#" class="btn btn-primary btn-sm">Xem thêm</a></p>
+                                <button type="button" class="btn btn-primary btn-sm" onclick=<%= "showDetailRoom('" + arr.get(idx+2).getType() + "')"%>>Xem thêm</button>
                             </div>
                         </div>
 
@@ -250,6 +289,7 @@
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/magnific-popup-options.js"></script>
 
+        <script src="js/getDetailRoom.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
