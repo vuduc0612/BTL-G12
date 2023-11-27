@@ -50,10 +50,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
                             </li>
-
-                            <li class="nav-item cta">
-                                <a class="nav-link" href="/hotel/roomlist"><span>Book Now</span></a>
-                            </li>
                         </ul>
 
                     </div>

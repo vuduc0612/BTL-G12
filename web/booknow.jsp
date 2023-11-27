@@ -43,15 +43,8 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="index.html">Home</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="rooms.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Rooms</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                                    <a class="dropdown-item" href="rooms.html">Room Videos</a>
-                                    <a class="dropdown-item" href="rooms.html">Presidential Room</a>
-                                    <a class="dropdown-item" href="rooms.html">Luxury Room</a>
-                                    <a class="dropdown-item" href="rooms.html">Deluxe Room</a>
-                                </div>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="/hotel/roomlist">Room</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="blog.html">Blog</a>
