@@ -21,7 +21,7 @@ insert into rooms values
 
 -- tao bảng ảnh phòng
 create table roomImages(
-	roomImageId int primary key auto_increment,
+    roomImageId int primary key auto_increment,
     roomId int,
     imgURL varchar(255),
     foreign key (roomId) references rooms(roomId)

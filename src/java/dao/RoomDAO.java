@@ -25,17 +25,21 @@ public class RoomDAO extends DAO {
                 + "from rooms\n"
                 + "inner join roomImages on rooms.roomId = roomImages.roomId;";
         try {
+            int cnt[] = new int[10];
             ArrayList<Room> arr = new ArrayList();
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ArrayList<String> img = new ArrayList();
                 img.add(rs.getString("imgURL"));
-                arr.add(new Room(rs.getInt("roomId"), rs.getString("roomName"),
+                if(cnt[rs.getInt("roomId")] == 0){
+                    arr.add(new Room(rs.getInt("roomId"), rs.getString("roomName"),
                         rs.getString("roomType"), rs.getFloat("price"),
                         rs.getFloat("sale"), img, rs.getInt("guest"),
                         rs.getInt("rate"), rs.getInt("square"),
-                        rs.getString("description")));
+                        rs.getString("description"), rs.getString("detail")));
+                    cnt[rs.getInt("roomId")] += 1;
+                }
             }
             return arr;
         } catch (Exception ex) {
@@ -60,7 +64,7 @@ public class RoomDAO extends DAO {
                         rs.getString("roomType"), rs.getFloat("price"),
                         rs.getFloat("sale"), img, rs.getInt("guest"),
                         rs.getInt("rate"), rs.getInt("square"),
-                        rs.getString("description"));
+                        rs.getString("description"), rs.getString("detail"));
 
             }
         } catch (Exception ex) {

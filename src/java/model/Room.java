@@ -12,12 +12,12 @@ import java.util.*;
  */
 public class Room {
     private int id, guest, rate, square;
-    private String name, type, des;
+    private String name, type, des, detail;
     private float price, sale;
     private ArrayList<String> img;
 
     public Room(int id, String name, String type, float price, 
-            float sale, ArrayList<String> img, int guest, int rate, int square, String des) {
+            float sale, ArrayList<String> img, int guest, int rate, int square, String des, String detail) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -28,8 +28,12 @@ public class Room {
         this.rate = rate;
         this.square = square;
         this.des = des;
+        this.detail = detail;
     }
-
+    
+    public String getDetail(){
+        return this.detail;
+    }
     public int getId() {
         return id;
     }
@@ -84,7 +88,10 @@ public class Room {
     public String getImg() {
         return img.get(0);
     }
-
+    
+    public ArrayList<String> getArrImg(){
+        return this.img;
+    }
     public void setImg(ArrayList<String> img) {
         this.img = img;
     }

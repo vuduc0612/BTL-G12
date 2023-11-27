@@ -52,6 +52,8 @@ public class getDetailAjax extends HttpServlet {
         jo.put("price", room.getPrice());
         jo.put("sale", room.getSale());
         jo.put("img", room.getImg());
+        jo.put("detail", room.getDetail());
+        
         out.print(jo);
     }
 
