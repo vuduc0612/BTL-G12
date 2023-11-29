@@ -10,9 +10,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <title>Không thành công</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900|Rubik:300,400,700" rel="stylesheet">
+
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+        <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+        <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+
+        <!-- Theme Style -->
+        <link rel="stylesheet" href="css/style.css">
         <script>
             function sendData() {
                 var dataToSend = "Du lieu can gui";
@@ -34,11 +47,16 @@
     </head>
     <body>
         <%ArrayList<String> arr = (ArrayList<String>) request.getAttribute("data");%>
-        <h1>Rất tiếc, phòng bạn đặt trong thời gian này không còn</h1>
-        <h1>Vui lòng đặt ngoài những khoảng thời gian dưới đây:</h1>
-        <ul>
-            <li><h2><%= arr.get(0) %></h2></li> 
-        </ul>
+        <div class="alert alert-danger" role="alert" style="margin-top: 30px;max-width: 576px;width: 100%;padding-right: 15px;padding-left: 15px;margin-left: auto;margin-right: auto;border: 1px solid #ccc">
+            <h4 class="alert-heading">Error!</h4>
+            <p>Rất tiếc, phòng bạn đặt trong thời gian này không còn</p>
+            <p>Vui lòng đặt ngoài những khoảng thời gian dưới đây:</p>
+            <ul>
+                <li><p><%= arr.get(0) %></p></li> 
+            </ul>
+            <hr>
+            <p><a href="/hotel/" class="btn btn-primary btn-sm">Trở về trang chủ</a></p>
+        </div>
     </body>
 
 </html>
