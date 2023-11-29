@@ -3,37 +3,51 @@ create table rooms(
 	roomId int primary key auto_increment, -- mã phòng
     roomName varchar(255), -- tên(số) phòng
     roomType varchar(20), -- loại phòng
-    isAvailable boolean, -- phòng còn trống hay không
     price float, -- gia phòng
     sale float, -- giảm giá
     rate int , -- số sao
     square int,
     guest int,
-    description varchar(255)
+    description varchar(255),
+    detail varchar(999)
 );
+
 insert into rooms values
-(null, "101", "Standard", True, 300000, 10, 3, 30, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
-(null, "201", "Superior", True, 500000, 5, 4, 35, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
-(null, "301", "Deluxe", True, 700000, 5, 4, 40, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
-(null, "401", "Suite", True, 600000, 7, 5, 40, 2,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
-(null, "501", "Junior", True, 400000, 15, 4, 45, 3,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi."),
-(null, "601", "Executive", True, 1000000, 20, 3, 50, 4,"Phòng được thiết thế theo tiêu chuẩn quốc tế, đầy đủ tiện ích tiện nghi.");
+(null, "101", "Standard", 300000, 10, 3, 30, 2,"Không gian tiện nghi và thoải mái với trang thiết bị cơ bản.", "Phòng Standard có diện tích 30m2, được thiết kế sang trọng và tiện ích. Nơi này cung cấp một không gian thoải mái, bao gồm giường ngủ rộng rãi, trang thiết bị nội thất hiện đại như TV màn hình phẳng, điều hòa không khí. Phòng tắm riêng đi kèm với đầy đủ vật dụng cá nhân và tiện ích đầy đủ, tạo điều kiện thuận lợi cho du khách thư giãn sau một ngày dài."),
+(null, "201", "Superior", 500000, 5, 4, 35, 2,"Kết hợp hoàn hảo giữa không gian rộng và các tiện ích hiện đại.", "Phòng Superior có diện tích rộng 35m2, đem đến không gian lưu trú sang trọng và tiện nghi. Trang bị nội thất hiện đại bao gồm giường ngủ thoải mái, TV màn hình phẳng, minibar và khu vực làm việc tiện ích. Phòng tắm riêng rộng rãi, đầy đủ vật dụng cá nhân và cửa sổ hoặc ban công với ánh sáng tự nhiên, tạo không gian thoáng đãng và tươi sáng cho du khách."),
+(null, "301", "Deluxe", 700000, 5, 4, 40, 3,"Sang trọng với không gian lưu trú rộng rãi và trang bị tiện ích cao cấp.", "Phòng Deluxe có diện tích rộng 40m2, là sự lựa chọn lý tưởng cho những ai muốn trải nghiệm không gian lưu trú sang trọng và cao cấp. Phòng được trang bị đầy đủ nội thất hiện đại và tiện ích, bao gồm giường ngủ tiêu chuẩn cao cấp, TV màn hình phẳng với nhiều kênh giải trí, tủ lạnh đa dạng các loại đồ uống và một khu vực để thư giãn sau một ngày dài. Phòng tắm riêng rộng lớn, được trang bị các thiết bị tiện ích và vật dụng cá nhân. Cửa sổ hoặc ban công mang đến không gian sáng và thoáng đãng, tạo điều kiện tốt nhất để tận hưởng ánh sáng tự nhiên và khung cảnh xung quanh."),
+(null, "401", "Suite", 600000, 7, 5, 40, 2,"Sự kết hợp tinh tế giữa tiện ích và đẳng cấp, tạo nên trải nghiệm lưu trú đặc biệt.", "Phòng Suite rộng 40m2, hòa quyện giữa sự sang trọng và tiện nghi tối đa. Đây không chỉ là nơi có giường ngủ cao cấp, phòng khách riêng, TV màn hình phẳng, minibar và khu vực làm việc tiện ích mà còn có không gian tắm riêng đầy đủ tiện nghi cùng cửa sổ hoặc ban công tạo không gian sáng và thông thoáng, mang đến trải nghiệm nghỉ ngơi đỉnh cao và thoải mái."),
+(null, "501", "Junior", 800000, 15, 4, 45, 3,"Lịch lãm với không gian lưu trú thoải mái và trang bị đầy đủ.", "Phòng Junior rộng lớn 45m2, là sự kết hợp hoàn hảo giữa sang trọng và tiện nghi. Nơi này tận hưởng không gian nội thất tinh tế, giường ngủ êm ái, khu vực tiếp khách thoải mái, TV màn hình phẳng, minibar và góc làm việc hiện đại. Phòng tắm riêng được trang bị đầy đủ tiện nghi và cửa sổ hoặc ban công để thả mình vào ánh sáng tự nhiên, tạo không gian sáng và dễ chịu cho du khách thư giãn tối đa."),
+(null, "601", "Executive", 1000000, 20, 3, 50, 4,"Đẳng cấp và sang trọng, mang lại sự tiện nghi và không gian lưu trú tối ưu.", "Phòng Executive, với diện tích rộng lớn 50m2, là biểu tượng của sự sang trọng và tiện nghi tối đa. Nơi này được trang bị đồ nội thất cao cấp, bao gồm không gian ngủ sang trọng, khu vực tiếp khách lịch sự, các tiện nghi công nghệ hiện đại và một khu vực làm việc tiện ích. Phòng tắm riêng tiện nghi với đầy đủ vật dụng cá nhân tạo không gian thư gian hoàn hảo. Cửa sổ hoặc ban công với không gian sáng rực rỡ và thoáng đãng, là nơi lý tưởng để du khách thư giãn và tận hưởng trải nghiệm lưu trú đẳng cấp.");
 
 -- tao bảng ảnh phòng
 create table roomImages(
-    roomImageId int primary key auto_increment,
+	roomImageId int primary key auto_increment,
     roomId int,
     imgURL varchar(255),
     foreign key (roomId) references rooms(roomId)
 );
-
+drop table roomimages;
 insert into roomImages values
 (null, 1, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1872x724//14075/1407503/1407503798.JPEG"),
+(null, 1, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/100x80/14085/1408520/1408520300/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 1, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14085/1408521/1408521251/One-Hotel-Hanoi-Exterior.JPEG"),
 (null, 2, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1872x724//14075/1407506/1407506927.JPEG"),
+(null, 2, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14153/1415377/1415377641/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 2, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14153/1415377/1415377767/One-Hotel-Hanoi-Exterior.JPEG"),
 (null, 3, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/406316259.jpg?k=02dd32edd2e74f0b66ee5c0e76588998abbf4d6c8546b218b3c0815450fb4516&o=&hp=1"),
+(null, 3, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14153/1415398/1415398788/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 3, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/100x80/14154/1415400/1415400174/One-Hotel-Hanoi-Exterior.JPEG"),
 (null, 4, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302232676.jpg?k=36c9238059230fabd78848cb4402ef08f788998f1cc11fce08ccd0449e89e5ed&o=&hp=1"),
+(null, 4, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/100x80/14154/1415413/1415413680/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 4, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14154/1415413/1415413680/One-Hotel-Hanoi-Exterior.JPEG"),
 (null, 5, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/305988880.jpg?k=6257a73ceaba8aca267af4dd282c65707e78329d0b7fd222a3ede1d867a6858a&o=&hp=1"),
-(null, 6, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302233329.jpg?k=3e41a3aad916bf27f43947e49dcc23aa0fb8526dfec6432ef7b3fc72a5e01c93&o=&hp=1");
+(null, 5, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/12221/1222149/1222149370/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 5, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14074/1407496/1407496466/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 6, "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302233329.jpg?k=3e41a3aad916bf27f43947e49dcc23aa0fb8526dfec6432ef7b3fc72a5e01c93&o=&hp=1"),
+(null, 6, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14153/1415377/1415377641/One-Hotel-Hanoi-Exterior.JPEG"),
+(null, 6, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1536x603/14153/1415377/1415377908/One-Hotel-Hanoi-Exterior.JPEG");
+
 
 
 -- tạo bảng khách hàng
@@ -64,4 +78,7 @@ create table bill(
     totalPrice float,
     foreign key (bookId) references booking(bookId)
 );
+select * from rooms
+inner join roomimages on rooms.roomId = roomimages.roomId;
+
 
