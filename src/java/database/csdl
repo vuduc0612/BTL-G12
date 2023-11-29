@@ -78,7 +78,6 @@ create table bill(
     totalPrice float,
     foreign key (bookId) references booking(bookId)
 );
-select * from rooms
-inner join roomimages on rooms.roomId = roomimages.roomId;
+
 
 
