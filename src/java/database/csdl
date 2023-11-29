@@ -27,7 +27,7 @@ create table roomImages(
     imgURL varchar(255),
     foreign key (roomId) references rooms(roomId)
 );
-drop table roomimages;
+-- drop table roomimages;
 insert into roomImages values
 (null, 1, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/r1872x724//14075/1407503/1407503798.JPEG"),
 (null, 1, "https://one-hotel-hanoi.hotelmix.vn/data/Photos/100x80/14085/1408520/1408520300/One-Hotel-Hanoi-Exterior.JPEG"),
